@@ -1,6 +1,6 @@
 OUTPUT_ARCH(riscv)
-ENTRY(_start) 
-BASE_ADDRESS = 0x80200000;
+ENTRY(_start)/*引用了上面汇编代码中定义的全局符号_start*/
+BASE_ADDRESS = 0x80200000;/*符号定义，这个符号在后面二进制文件中可以找到*/
 
 SECTIONS
 {
@@ -32,8 +32,8 @@ SECTIONS
     . = ALIGN(4K);
     edata = .;
     .bss : {
-        *(.bss.stack)
-        sbss = .;
+        *(.bss.stack)/*注意这是栈空间，为何栈空间需要写入ELF呢？*/
+        sbss = .;	/*sbss和ebss之间的内容需要初始化为0,但是.bss.stack不需要初始化，因此.bss.stack不在sbss和ebss之间*/
         *(.bss .bss.*)
         *(.sbss .sbss.*)
     }
