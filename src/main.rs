@@ -28,8 +28,8 @@ global_asm!(include_str!("entry.asm"));
 #[no_mangle]
 pub fn rust_main() -> ! {
     clear_bss();
-    println!("ah , very good boy!");
-    panic!("oh crash now ..............{}","hehe")
+    println!("hello, power on !!");
+    panic!("oh crash !! {}","-_-!")
 }  
 
 
