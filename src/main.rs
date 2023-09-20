@@ -28,6 +28,21 @@ global_asm!(include_str!("entry.asm"));
 #[no_mangle]
 pub fn rust_main() -> ! {
     clear_bss();
+    extern "C" {
+        static stext : u64;//如果extern为变量，则后面还需要取地址
+        fn etext();
+        fn srodata();
+        fn erodata();
+        fn sdata();
+        fn edata();
+
+    }
+    unsafe{
+        info!(".text [{:p}, {:#x})", (&stext) , etext as usize,);
+    }
+    debug!(".rodata [{:#x}, {:#x})", srodata as usize, erodata as usize);
+    error!(".data [{:#x}, {:#x})", sdata as usize, edata as usize);
+
     println!("hello, power on !!");
     panic!("oh crash !! {}","-_-!")
 }  

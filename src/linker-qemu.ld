@@ -1,7 +1,6 @@
 OUTPUT_ARCH(riscv)
-ENTRY(_start)/*ÒýÓÃÁËÉÏÃæ»ã±à´úÂëÖÐ¶¨ÒåµÄÈ«¾Ö·ûºÅ_start*/
-BASE_ADDRESS = 0x80200000;/*·ûºÅ¶¨Òå£¬Õâ¸ö·ûºÅÔÚºóÃæ¶þ½øÖÆÎÄ¼þÖÐ¿ÉÒÔÕÒµ½*/
-
+ENTRY(_start)/*å¼•ç”¨äº†ä¸Šé¢æ±‡ç¼–ä»£ç ä¸­å®šä¹‰çš„å…¨å±€ç¬¦å·_start*/
+BASE_ADDRESS = 0x80200000;
 SECTIONS
 {
     . = BASE_ADDRESS;
@@ -32,8 +31,8 @@ SECTIONS
     . = ALIGN(4K);
     edata = .;
     .bss : {
-        *(.bss.stack)/*×¢ÒâÕâÊÇÕ»¿Õ¼ä£¬ÎªºÎÕ»¿Õ¼äÐèÒªÐ´ÈëELFÄØ£¿*/
-        sbss = .;	/*sbssºÍebssÖ®¼äµÄÄÚÈÝÐèÒª³õÊ¼»¯Îª0,µ«ÊÇ.bss.stack²»ÐèÒª³õÊ¼»¯£¬Òò´Ë.bss.stack²»ÔÚsbssºÍebssÖ®¼ä*/
+        *(.bss.stack)/*æ³¨æ„è¿™æ˜¯æ ˆç©ºé—´ï¼Œä¸ºä½•æ ˆç©ºé—´éœ€è¦å†™å…¥ELFå‘¢ï¼Ÿ*/
+        sbss = .;	/*sbsså’Œebssä¹‹é—´çš„å†…å®¹éœ€è¦åˆå§‹åŒ–ä¸º0,ä½†æ˜¯.bss.stackä¸éœ€è¦åˆå§‹åŒ–ï¼Œå› æ­¤.bss.stackä¸åœ¨sbsså’Œebssä¹‹é—´*/
         *(.bss .bss.*)
         *(.sbss .sbss.*)
     }
