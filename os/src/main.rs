@@ -3,9 +3,11 @@
 #![feature(panic_info_message)]
 
 mod sbi;
+#[macro_use]
 mod console;
 mod lang_items;
-
+mod syscall;
+mod batch;
 use core::arch::global_asm;
 
 global_asm!(include_str!("entry.asm"));
