@@ -7,10 +7,14 @@ mod sbi;
 mod console;
 mod lang_items;
 mod syscall;
+mod sync;
+mod trap;
 mod batch;
+
 use core::arch::global_asm;
 
 global_asm!(include_str!("entry.asm"));
+global_asm!(include_str!("link_app.S"));
 
 fn clear_bss() {
     extern "C" {
@@ -58,5 +62,7 @@ pub fn rust_main() -> ! {
         boot_stack_top as usize, boot_stack_lower_bound as usize
     );
     error!("[kernel] .bss [{:#x}, {:#x})", sbss as usize, ebss as usize);
-    panic!("oh crash !! {}","-_-!");
+    trap::init();
+    batch::init();
+    batch::run_next_app();
 }
